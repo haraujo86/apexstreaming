@@ -45,17 +45,11 @@
           parentNode: document.querySelector('#meet')
       };
       var api = new JitsiMeetExternalAPI(domain, options);
-      api.executeCommand('password', '1234');
-      api.addEventListener('participantJoined' , function(obj){
-        alert('Alguém entrou, fica esperto! ' + obj.displayName);
-      });
     });
     </script>
   </head>
   <body>
-    <div id="root">
-       
-    </div>
+    <div id="root"></div>
     <!--
       <div id="meet">Hi there!</div>
     -->

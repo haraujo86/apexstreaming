@@ -1,3 +1,4 @@
 export const urls = {
-    room: { name: 'Room', path:'/room'},
+    home: { name: 'Home', path:'/'},
+    room: { name: 'Room', path:'/room'}
 };

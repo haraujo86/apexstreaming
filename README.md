@@ -72,4 +72,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 Using Saas: npm install sass@^1.26.2; npm install node-sass
 Material-ui: @material-ui/core
 SASS_PATH=./node_modules;./src
-
+react-router-dom: npm install react-router-dom
+react-load-script: npm install react-load-script
