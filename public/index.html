@@ -24,20 +24,40 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>React Streaming App</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script>
+    $(document).ready(function() {
+      var domain = 'meet.jit.si';
+      var options = {
+          interfaceConfigOverwrite: { 
+            SHOW_JITSI_WATERMARK: false,
+            JITSI_WATERMARK_LINK: 'https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png',
+            SHOW_WATERMARK_FOR_GUESTS: false,
+            SHOW_BRAND_WATERMARK: false,
+            BRAND_WATERMARK_LINK: 'https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png'
+          },
+          roomName: 'foolboyspersonalroom',
+          width: 700,
+          height: 700,
+          parentNode: document.querySelector('#meet')
+      };
+      var api = new JitsiMeetExternalAPI(domain, options);
+      api.executeCommand('password', '1234');
+      api.addEventListener('participantJoined' , function(obj){
+        alert('Alguém entrou, fica esperto! ' + obj.displayName);
+      });
+    });
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+       
+    </div>
     <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+      <div id="meet">Hi there!</div>
     -->
   </body>
 </html>

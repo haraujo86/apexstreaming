@@ -66,3 +66,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Dependecies
+
+Using Saas: npm install sass@^1.26.2; npm install node-sass
+Material-ui: @material-ui/core
+SASS_PATH=./node_modules;./src
+
