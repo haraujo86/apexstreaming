@@ -6,22 +6,21 @@ import Script from 'react-load-script'
 class Room extends Component {
 
   componentDidMount() {
-    if (typeof window !== 'undefined') {
-          let domain = 'meet.jit.si';
+    if (typeof window !== 'undefined') { //executing just client-side
+      let roomId = this.props.location.search.split("?roomId=");
+      let domain = 'meet.jit.si';
       let options = {
-          roomName: 'foolboyspersonalroom',
-          width: 1024,
-          height: 768,
+          roomName: roomId,
+          width: 500,
+          height: 500,
           parentNode: document.querySelector('#root')
       };
-      console.log(options);
       let api = new window.JitsiMeetExternalAPI(domain, options); 
     }
   }
 
   render = () => (
     <React.Fragment>
-      <Typography variant="headline" component="h3">Testando</Typography>
       <Script
       url="https://meet.jit.si/external_api.js"
       onCreate={this.handleScriptCreate.bind(this)}

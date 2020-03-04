@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from "react-dom";
 import './App.css';
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -10,16 +9,6 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
-import { withRouter } from 'react-router';
 
 const faces = [
   "http://i.pravatar.cc/300?img=1",
@@ -28,8 +17,8 @@ const faces = [
   "http://i.pravatar.cc/300?img=4"
 ];
 
-const styles = muiBaseTheme => ({
-  card: {
+const StyledCard = withStyles({
+  root: {
     maxWidth: 300,
     margin: "auto",
     transition: "0.3s",
@@ -37,7 +26,26 @@ const styles = muiBaseTheme => ({
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
     }
-  },
+  }
+})(Card);
+
+const StyledAvatar = withStyles ({
+  root: {
+    display: "inline-block",
+    border: "2px solid white",
+    "&:not(:first-of-type)": {
+      marginLeft: -10
+    }
+  }
+})(Avatar);
+
+const StyledCardMedia = withStyles({
+  root: {
+    paddingTop: "56.25%"
+  }
+})(CardMedia);
+
+const styles = muiBaseTheme => ({
   media: {
     paddingTop: "56.25%"
   },
@@ -66,15 +74,15 @@ const styles = muiBaseTheme => ({
 class App extends Component {
   submit = (event) => {
     event.preventDefault();
-    this.props.history.push('/room');
+    this.props.history.push({pathname: '/room', search: '?roomId=foolboyspersonalroom2'});
     //this.props.history.replace({ pathname: '/room' });
   }
 
   render = () => ( 
     <React.Fragment>
       <div className="App">
-        <Card>
-          <CardMedia
+        <StyledCard>
+          <StyledCardMedia
             image={
               "https://image.freepik.com/free-photo/river-foggy-mountains-landscape_1204-511.jpg"
             }
@@ -85,18 +93,17 @@ class App extends Component {
               variant={"h6"}
               gutterBottom
             >
-              Nature Around Us
+              WhereBy #FoolBoys
             </Typography>
             <Typography
               className={"MuiTypography--subheading"}
               variant={"caption"}
             >
-              We are going to learn different kinds of species in nature that live
-              together to form amazing environment.
+              Entrando na sala dos trouxas, onde por muitos anos 3 trabalhadores de uma empresa foram verdadeiros trouxas. Na verdade, um ainda é.
             </Typography>
             <Divider light />
             {faces.map(face => (
-              <Avatar key={face} src={face} />
+              <StyledAvatar key={face} src={face} />
             ))}
             <Divider light />
             <CardActions>
@@ -108,7 +115,7 @@ class App extends Component {
               </form>
             </CardActions>
           </CardContent>
-        </Card>
+        </StyledCard>
       </div>
     </React.Fragment>
   );
